@@ -8,4 +8,5 @@ import (
 func main() {
 	databse.GetClient()
 	encrypt.Encrypt("This should work", "this_is_32_byte_key_for_AES_256!")
+	databse.AddSecret()
 }
