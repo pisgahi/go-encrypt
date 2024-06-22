@@ -7,18 +7,11 @@ import (
 	"os"
 )
 
-func Decrypt() {
-	cipherText, err := os.ReadFile("assets/outputs/encrypted/ciphertext.bin")
-	if err != nil {
-		log.Fatal(err)
-	}
+func Decrypt(cipherText []byte, key string) {
+	keyBytes := []byte(key)
+	cipherTextBytes := []byte(cipherText)
 
-	key, err := os.ReadFile("assets/key.txt")
-	if err != nil {
-		log.Fatalf("read file err: %v", err.Error())
-	}
-
-	block, err := aes.NewCipher(key)
+	block, err := aes.NewCipher(keyBytes)
 	if err != nil {
 		log.Fatalf("cipher err: %v", err.Error())
 	}
@@ -28,9 +21,9 @@ func Decrypt() {
 		log.Fatalf("cipher GCM err: %v", err.Error())
 	}
 
-	nonce := cipherText[:gcm.NonceSize()]
-	cipherText = cipherText[gcm.NonceSize():]
-	plainText, err := gcm.Open(nil, nonce, cipherText, nil)
+	nonce := cipherTextBytes[:gcm.NonceSize()]
+	cipherTextBytes = cipherTextBytes[gcm.NonceSize():]
+	plainText, err := gcm.Open(nil, nonce, cipherTextBytes, nil)
 	if err != nil {
 		log.Fatalf("decrypt file err: %v", err.Error())
 	}

@@ -4,23 +4,21 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
+	"fmt"
 	"io"
 	"log"
 	"os"
+
+	decrypt "github.com/pisgahi/go-encrypt/decryption"
 )
 
-func Encrypt() {
-	plainText, err := os.ReadFile("assets/plaintext.txt")
-	if err != nil {
-		log.Fatal("Error reading file", err.Error())
-	}
+func Encrypt(plainText string, key string) {
+	keyBytes := []byte(key)
+	plainTextBytes := []byte(plainText)
 
-	key, err := os.ReadFile("assets/key.txt")
-	if err != nil {
-		log.Fatal("Error reading file", err.Error())
-	}
+	fmt.Println(keyBytes)
 
-	block, err := aes.NewCipher(key)
+	block, err := aes.NewCipher(keyBytes)
 	if err != nil {
 		log.Fatalf("cipher err: %v", err.Error())
 	}
@@ -35,9 +33,13 @@ func Encrypt() {
 		log.Fatalf("nonce err: %v", err.Error())
 	}
 
-	cipherText := gcm.Seal(nonce, nonce, plainText, nil)
+	cipherText := gcm.Seal(nonce, nonce, plainTextBytes, nil)
 	err = os.WriteFile("assets/outputs/encrypted/ciphertext.bin", cipherText, 0777)
 	if err != nil {
 		log.Fatalf("write file err: %v", err.Error())
 	}
+
+	fmt.Println("\nc text:", cipherText)
+
+	decrypt.Decrypt(cipherText, key)
 }
