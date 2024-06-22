@@ -6,7 +6,6 @@ import (
 	"crypto/rand"
 	"io"
 	"log"
-	"os"
 
 	"github.com/pisgahi/go-encrypt/database"
 )
@@ -31,10 +30,6 @@ func Encrypt(plainText string, key string) {
 	}
 
 	cipherText := gcm.Seal(nonce, nonce, plainTextBytes, nil)
-	err = os.WriteFile("assets/outputs/encrypted/ciphertext.bin", cipherText, 0777)
-	if err != nil {
-		log.Fatalf("write file err: %v", err.Error())
-	}
 
 	database.AddSecret(cipherText, key)
 }
