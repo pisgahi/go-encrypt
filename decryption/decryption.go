@@ -4,11 +4,15 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"log"
-	"os"
+
+	"github.com/pisgahi/go-encrypt/database"
 )
 
-func Decrypt(cipherText []byte, key string) {
+func Decrypt(key string) string {
 	keyBytes := []byte(key)
+
+	cipherText := database.GetSecret(key)
+
 	cipherTextBytes := []byte(cipherText)
 
 	block, err := aes.NewCipher(keyBytes)
@@ -28,8 +32,8 @@ func Decrypt(cipherText []byte, key string) {
 		log.Fatalf("decrypt file err: %v", err.Error())
 	}
 
-	err = os.WriteFile("assets/outputs/decrypted/plaintext.txt", plainText, 0777)
-	if err != nil {
-		log.Fatalf("write file err: %v", err.Error())
-	}
+	decrypted := string(plainText)
+
+	return decrypted
+
 }

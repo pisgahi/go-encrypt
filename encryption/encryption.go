@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	decrypt "github.com/pisgahi/go-encrypt/decryption"
+	"github.com/pisgahi/go-encrypt/database"
 )
 
 func Encrypt(plainText string, key string) {
@@ -36,5 +36,5 @@ func Encrypt(plainText string, key string) {
 		log.Fatalf("write file err: %v", err.Error())
 	}
 
-	decrypt.Decrypt(cipherText, key)
+	database.AddSecret(cipherText, key)
 }

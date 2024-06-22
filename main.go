@@ -1,12 +1,9 @@
 package main
 
 import (
-	databse "github.com/pisgahi/go-encrypt/database"
-	encrypt "github.com/pisgahi/go-encrypt/encryption"
+	decrypt "github.com/pisgahi/go-encrypt/decryption"
 )
 
 func main() {
-	databse.GetClient()
-	encrypt.Encrypt("This should work", "this_is_32_byte_key_for_AES_256!")
-	databse.AddSecret()
+	decrypt.Decrypt("this_is_32_byte_key_for_AES_256!")
 }
