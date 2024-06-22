@@ -10,9 +10,6 @@ import (
 )
 
 func main() {
-	os.Remove("assets/ciphertext.bin")
-	os.Remove("assets/outputs/plaintext.txt")
-
 	encrypt()
 	decrypt()
 }
@@ -23,7 +20,7 @@ func encrypt() {
 		log.Fatal("Error reading file", err.Error())
 	}
 
-	key, err := os.ReadFile("assets/plaintext.txt")
+	key, err := os.ReadFile("assets/key.txt")
 	if err != nil {
 		log.Fatal("Error reading file", err.Error())
 	}
@@ -44,7 +41,7 @@ func encrypt() {
 	}
 
 	cipherText := gcm.Seal(nonce, nonce, plainText, nil)
-	err = os.WriteFile("assets/ciphertext.bin", cipherText, 0777)
+	err = os.WriteFile("assets/outputs/encrypted/ciphertext.bin", cipherText, 0777)
 	if err != nil {
 		log.Fatalf("write file err: %v", err.Error())
 	}
@@ -52,7 +49,7 @@ func encrypt() {
 
 // Decrypt
 func decrypt() {
-	cipherText, err := os.ReadFile("assets/ciphertext.bin")
+	cipherText, err := os.ReadFile("assets/outputs/encrypted/ciphertext.bin")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,7 +76,7 @@ func decrypt() {
 		log.Fatalf("decrypt file err: %v", err.Error())
 	}
 
-	err = os.WriteFile("assets/outputs/plaintext.txt", plainText, 0777)
+	err = os.WriteFile("assets/outputs/decrypted/plaintext.txt", plainText, 0777)
 	if err != nil {
 		log.Fatalf("write file err: %v", err.Error())
 	}
