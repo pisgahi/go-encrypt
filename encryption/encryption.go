@@ -4,7 +4,6 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -15,8 +14,6 @@ import (
 func Encrypt(plainText string, key string) {
 	keyBytes := []byte(key)
 	plainTextBytes := []byte(plainText)
-
-	fmt.Println(keyBytes)
 
 	block, err := aes.NewCipher(keyBytes)
 	if err != nil {
@@ -38,8 +35,6 @@ func Encrypt(plainText string, key string) {
 	if err != nil {
 		log.Fatalf("write file err: %v", err.Error())
 	}
-
-	fmt.Println("\nc text:", cipherText)
 
 	decrypt.Decrypt(cipherText, key)
 }
