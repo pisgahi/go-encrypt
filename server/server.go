@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
 )
 
 type Server struct {
@@ -24,11 +23,9 @@ func CreateServer() *Server {
 	return s
 }
 
-func serverGreeting(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello go-encrpt"))
-}
-
 func (s *Server) MountHandlers() {
-	s.Router.Use(middleware.Logger)
+	// s.Router.Use(middleware.Logger)
 	s.Router.Get("/", serverGreeting)
+	s.Router.Post("/add", sendSecret)
+	s.Router.Get("/get", getSecretHandler)
 }
