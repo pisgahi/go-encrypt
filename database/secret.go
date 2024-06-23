@@ -51,7 +51,6 @@ func GetSecret(key string) string {
 		log.Fatalf("Failed to find document: %v", err)
 	}
 
-	// Ensure the retrieved key matches the provided key
 	if result.Key != key {
 		log.Fatalf("Provided key does not match the key used for encryption")
 	}
