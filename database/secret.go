@@ -2,6 +2,7 @@ package database
 
 import (
 	"context"
+	"encoding/base64"
 	"fmt"
 	"log"
 	"time"
@@ -11,16 +12,18 @@ import (
 
 type Secret struct {
 	Id         string
-	CipherText []byte
+	CipherText string
 	Key        string
 }
 
 func AddSecret(cipherText []byte, key string) error {
 	client := GetClient()
 
+	cipherTextBase64 := base64.StdEncoding.EncodeToString(cipherText)
+
 	newSecret := Secret{
 		Id:         "test",
-		CipherText: cipherText,
+		CipherText: cipherTextBase64,
 		Key:        key,
 	}
 
@@ -36,7 +39,7 @@ func AddSecret(cipherText []byte, key string) error {
 
 }
 
-func GetSecret(key string) []byte {
+func GetSecret(key string) string {
 	client := GetClient()
 
 	collection := client.Database("go-encrypt").Collection("secrets")
@@ -52,12 +55,6 @@ func GetSecret(key string) []byte {
 	if result.Key != key {
 		log.Fatalf("Provided key does not match the key used for encryption")
 	}
-
-	// Decode the Base64 encoded cipherText
-	// cipherTextBytes, err := base64.StdEncoding.DecodeString(result.CipherText)
-	// if err != nil {
-	// 	log.Fatalf("Failed to decode Base64 cipherText: %v", err)
-	// }
 
 	return result.CipherText
 }

@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/pisgahi/go-encrypt/database"
+	decrypt "github.com/pisgahi/go-encrypt/decryption"
 	encrypt "github.com/pisgahi/go-encrypt/encryption"
 )
 
@@ -42,8 +42,7 @@ func getSecretHandler(w http.ResponseWriter, r *http.Request) {
 		log.Fatal("Erorr decoding key", err.Error())
 	}
 
-	decrypted := database.GetSecret(userKey.Key)
-	decryptedStr := string(decrypted)
+	decryptedStr := decrypt.Decrypt(userKey.Key)
 
 	decryptedSecret := DecryptedSecret{
 		DecipheredText: decryptedStr,
