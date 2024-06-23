@@ -7,22 +7,18 @@ import (
 	"log"
 	"time"
 
+	"github.com/pisgahi/go-encrypt/models"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
-
-type Secret struct {
-	Id         string
-	CipherText string
-	Key        string
-}
 
 func AddSecret(cipherText []byte, key string) error {
 	client := GetClient()
 
 	cipherTextBase64 := base64.StdEncoding.EncodeToString(cipherText)
 
-	newSecret := Secret{
-		Id:         "test",
+	newSecret := models.Secret{
+		Id:         primitive.NewObjectID().Hex(),
 		CipherText: cipherTextBase64,
 		Key:        key,
 	}
@@ -35,8 +31,8 @@ func AddSecret(cipherText []byte, key string) error {
 	if err != nil {
 		fmt.Println("Error add comment to DB", err)
 	}
-	return nil
 
+	return nil
 }
 
 func GetSecret(key string) string {
@@ -44,7 +40,7 @@ func GetSecret(key string) string {
 
 	collection := client.Database("go-encrypt").Collection("secrets")
 
-	var result Secret
+	var result models.Secret
 	filter := bson.M{"key": key}
 	err := collection.FindOne(context.TODO(), filter).Decode(&result)
 	if err != nil {

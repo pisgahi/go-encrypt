@@ -30,6 +30,5 @@ func Encrypt(plainText string, key string) {
 	}
 
 	cipherText := gcm.Seal(nonce, nonce, plainTextBytes, nil)
-
 	database.AddSecret(cipherText, key)
 }

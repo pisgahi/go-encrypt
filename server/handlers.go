@@ -7,26 +7,15 @@ import (
 
 	decrypt "github.com/pisgahi/go-encrypt/decryption"
 	encrypt "github.com/pisgahi/go-encrypt/encryption"
+	"github.com/pisgahi/go-encrypt/models"
 )
-
-type UserSecret struct {
-	CipherText string
-	Key        string
-}
-type UserKey struct {
-	Key string
-}
-
-type DecryptedSecret struct {
-	DecipheredText string `json:"decipheredText"`
-}
 
 func serverGreeting(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello go-encrpt"))
 }
 
 func sendSecretHandler(w http.ResponseWriter, r *http.Request) {
-	var newUserSecret UserSecret
+	var newUserSecret models.UserSecret
 	err := json.NewDecoder(r.Body).Decode(&newUserSecret)
 	if err != nil {
 		log.Fatal("Error decoding secret", err.Error())
@@ -34,10 +23,12 @@ func sendSecretHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	encrypt.Encrypt(newUserSecret.CipherText, newUserSecret.Key)
+	w.Write([]byte("Secret added"))
+	w.WriteHeader(http.StatusOK)
 }
 
 func getSecretHandler(w http.ResponseWriter, r *http.Request) {
-	var userKey UserKey
+	var userKey models.UserKey
 	err := json.NewDecoder(r.Body).Decode(&userKey)
 	if err != nil {
 		log.Fatal("Erorr decoding key", err.Error())
@@ -45,7 +36,7 @@ func getSecretHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	decipheredStr := decrypt.Decrypt(userKey.Key)
-	decryptedSecret := DecryptedSecret{
+	decryptedSecret := models.DecryptedSecret{
 		DecipheredText: decipheredStr,
 	}
 
@@ -55,5 +46,4 @@ func getSecretHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "Error encoding response: "+err.Error(), http.StatusInternalServerError)
 	}
-	w.WriteHeader(http.StatusOK)
 }

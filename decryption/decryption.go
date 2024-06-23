@@ -38,6 +38,5 @@ func Decrypt(key string) string {
 	}
 
 	decrypted := string(plainText)
-
 	return decrypted
 }
