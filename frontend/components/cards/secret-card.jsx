@@ -7,7 +7,7 @@ export default function SecretCard() {
         <input
           type="text"
           placeholder="enter your key..."
-          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-sm focus:outline-none"
+          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-sm focus:"
         />
         <Sendkey />
       </div>

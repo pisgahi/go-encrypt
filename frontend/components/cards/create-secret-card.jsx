@@ -22,7 +22,9 @@ export default function CreateSecret() {
         ease-in-out flex items-center p-2 rounded-lg mt-2 group"
       >
         <button className="w-full p-1 flex justify-center items-center rounded-lg">
-          <p className=" text-[#7f7f7f] group-hover:text-white">Create Secret</p>
+          <p className=" text-[#7f7f7f] group-hover:text-white">
+            Create Secret
+          </p>
         </button>
       </div>
     </div>

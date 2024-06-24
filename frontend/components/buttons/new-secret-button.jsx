@@ -1,6 +1,11 @@
+import Link from "next/link";
+
 export default function NewSecret() {
   return (
-    <button className="bg-green-300 md:w-[70px] flex justify-center items-center rounded-lg">
+    <Link
+      href={"/add"}
+      className="bg-green-300 md:w-[70px] flex justify-center items-center rounded-lg"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -16,6 +21,6 @@ export default function NewSecret() {
         <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
       </svg>
-    </button>
+    </Link>
   );
 }
