@@ -6,7 +6,6 @@ export const getSecret = async ({ key }) => {
   const response = await axiosInstance.post("/get", {
     key: key,
   });
-  console.log(response.data);
   return response.data;
 };
 
@@ -20,7 +19,6 @@ export const createSecret = async ({ plainText, key }) => {
     plainText: plainText,
     key: key,
   });
-  console.log(response.data);
   return response.data;
 };
 

@@ -1,21 +1,34 @@
 "use client";
 
 import { createSecret } from "@/lib/encrypt/encrypt.api.actions";
+import { useState } from "react";
 
 export default function CreateSecret() {
+  const [key, setKey] = useState("");
+  const [plainText, setPlainText] = useState("");
+
   const handleClick = async () => {
     try {
-      const data = await createSecret(plainText, key);
-      console.log(data);
+      const data = await createSecret({ plainText, key });
     } catch (error) {
       console.error("Error creating secret:", error);
     }
+  };
+
+  const handleKeyChange = (e) => {
+    setKey(e.target.value);
+  };
+
+  const handlePlainTextChange = (e) => {
+    setPlainText(e.target.value);
   };
 
   return (
     <div className="bg-[#151515] md:w-[400px] p-2 rounded-lg">
       <div className="flex pb-2 rounded-lg">
         <input
+          value={key}
+          onChange={handleKeyChange}
           type="text"
           placeholder="your 32-bit key"
           className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-xs focus:outline-none"
@@ -24,6 +37,8 @@ export default function CreateSecret() {
 
       <div className="bg-[#242424] h-[320px] rounded-lg">
         <textarea
+          value={plainText}
+          onChange={handlePlainTextChange}
           placeholder="your secret goes here..."
           className="bg-[#242424] text-[#7f7f7f] resize-none 
           w-full h-full rounded-lg p-4 mb-6 focus:outline-none"
