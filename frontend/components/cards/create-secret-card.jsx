@@ -1,4 +1,17 @@
+"use client";
+
+import { createSecret } from "@/lib/encrypt/encrypt.api.actions";
+
 export default function CreateSecret() {
+  const handleClick = async () => {
+    try {
+      const data = await createSecret(plainText, key);
+      console.log(data);
+    } catch (error) {
+      console.error("Error creating secret:", error);
+    }
+  };
+
   return (
     <div className="bg-[#151515] md:w-[400px] p-2 rounded-lg">
       <div className="flex pb-2 rounded-lg">
@@ -21,7 +34,10 @@ export default function CreateSecret() {
         className="bg-[#242424] hover:bg-green-300 transition duration-350 
         ease-in-out flex items-center p-2 rounded-lg mt-2 group"
       >
-        <button className="w-full p-1 flex justify-center items-center rounded-lg">
+        <button
+          onClick={handleClick}
+          className="w-full p-1 flex justify-center items-center rounded-lg"
+        >
           <p className=" text-[#7f7f7f] group-hover:text-white">
             Create Secret
           </p>

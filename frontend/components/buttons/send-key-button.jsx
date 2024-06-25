@@ -1,6 +1,22 @@
+"use client";
+
+import { getSecret } from "@/lib/encrypt/encrypt.api.actions";
+
 export default function Sendkey() {
+  const handleClick = async (key) => {
+    try {
+      const data = await getSecret();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
-    <button className="bg-[#242424] md:w-[70px] flex justify-center items-center rounded-lg">
+    <button
+      onClick={handleClick}
+      className="bg-[#242424] md:w-[70px] flex justify-center items-center rounded-lg"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
