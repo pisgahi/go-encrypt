@@ -1,11 +1,11 @@
 package models
 
 type UserSecret struct {
-	CipherText string
-	Key        string
+	PlainText string `json:"plainText"`
+	Key       string `json:"key"`
 }
 type UserKey struct {
-	Key string
+	Key string `json:"key"`
 }
 
 type DecryptedSecret struct {

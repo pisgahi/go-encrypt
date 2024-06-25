@@ -22,7 +22,7 @@ func sendSecretHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 
-	encrypt.Encrypt(newUserSecret.CipherText, newUserSecret.Key)
+	encrypt.Encrypt(newUserSecret.PlainText, newUserSecret.Key)
 	w.Write([]byte("Secret added"))
 	w.WriteHeader(http.StatusOK)
 }
