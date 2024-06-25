@@ -5,10 +5,12 @@ import { useState } from "react";
 
 export default function SecretCard() {
   const [key, setKey] = useState("");
+  const [secretData, setSecretData] = useState();
 
   const handleClick = async () => {
     try {
       const data = await getSecret({ key });
+      setSecretData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -26,9 +28,8 @@ export default function SecretCard() {
           onChange={handleKeyChange}
           type="text"
           placeholder="enter your key..."
-          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-sm focus:"
+          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-sm focus:outline-none"
         />
-
         <button
           onClick={handleClick}
           className="bg-[#242424] md:w-[70px] flex justify-center items-center rounded-lg"
@@ -49,24 +50,15 @@ export default function SecretCard() {
             <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
           </svg>
         </button>
-
-        {/* <Sendkey /> */}
       </div>
       <div className=" w-full h-full rounded-lg px-2 pb-2">
         <div
           className="flex flex-col items-center 
           relative overflow-hidden"
         >
-          <div className="bg-[#242424] h-[320px] overflow-y-auto rounded-lg">
-            <p className=" text-[#7f7f7f] h-full rounded-lg p-4 mb-6">
-              secret info Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Itaque, dignissimos esse consectetur nemo qui eius doloribus
-              explicabo, facilis natus voluptates aperiam expedita fuga
-              aspernatur fugiat similique neque assumenda, adipisci odit? Lorem
-              ipsum, dolor sit amet consectetur adipisicing elit. Totam sint
-              nobis magnam deserunt perferendis esse doloremque amet dolor
-              aperiam illum! Magnam consequuntur odio non officia voluptatibus
-              voluptatem ipsum magni. Nihil! Lorem ipsum dolor sit amet
+          <div className="bg-[#242424] w-full h-[320px] overflow-y-auto rounded-lg">
+            <p className=" text-[#7f7f7f] rounded-lg p-4">
+              {secretData?.decipheredText}
             </p>
           </div>
         </div>
