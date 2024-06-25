@@ -26,5 +26,5 @@ func CreateServer() *Server {
 func (s *Server) MountHandlers() {
 	s.Router.Get("/", serverGreeting)
 	s.Router.Post("/add", sendSecretHandler)
-	s.Router.Get("/get", getSecretHandler)
+	s.Router.Post("/get", getSecretHandler)
 }
