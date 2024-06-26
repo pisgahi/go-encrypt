@@ -1,9 +1,13 @@
-import Homepage from "@/components/homepage";
+import GithubButton from "@/components/buttons/github-button";
+import SecretCard from "@/components/cards/secret-card";
 
 export default function Home() {
   return (
     <div>
-      <Homepage />
+      <SecretCard />
+      <div className="mt-10">
+        <GithubButton />
+      </div>
     </div>
   );
 }

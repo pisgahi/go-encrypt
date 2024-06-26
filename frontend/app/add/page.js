@@ -1,10 +1,10 @@
-import CreatePage from "@/components/create-page";
+import CreateSecret from "@/components/cards/create-secret-card";
 import React from "react";
 
 export default function page() {
   return (
     <div>
-      <CreatePage />
+      <CreateSecret />
     </div>
   );
 }
