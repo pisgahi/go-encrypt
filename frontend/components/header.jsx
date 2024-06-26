@@ -3,7 +3,7 @@ import NewSecret from "./buttons/new-secret-button";
 
 export default function Header() {
   return (
-    <div className="bg-[#151515] md:w-[400px] h-[70px] p-2 flex space-x-2 rounded-lg">
+    <div className="bg-[#151515] w-[350px] md:w-[400px] h-[70px] p-2 flex space-x-2 rounded-lg">
       <div className=" flex flex-col justify-center w-full p-4">
         <Link href={"/"} className="font-bold text-green-300">
           Go Encrypt

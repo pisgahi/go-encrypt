@@ -21,18 +21,18 @@ export default function SecretCard() {
   };
 
   return (
-    <div className="bg-[#151515] md:w-[400px] h-[400px] flex flex-col rounded-lg">
+    <div className="bg-[#151515] w-[350px] md:w-[400px] h-[400px] flex flex-col rounded-lg">
       <div className="flex p-2 rounded-lg space-x-2">
         <input
           value={key}
           onChange={handleKeyChange}
           type="text"
           placeholder="enter your key..."
-          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-xs focus:outline-none"
+          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg p-4 text-xs focus:outline-none"
         />
         <button
           onClick={handleClick}
-          className="bg-[#242424] md:w-[70px] flex justify-center items-center rounded-lg"
+          className="md:bg-[#242424] md:w-[70px] flex justify-center items-center rounded-lg"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

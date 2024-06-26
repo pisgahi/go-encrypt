@@ -24,18 +24,17 @@ export default function CreateSecret() {
   };
 
   return (
-    <div className="">
-      <div className="bg-[#151515] md:w-[400px] p-2 rounded-lg">
+    <div>
+      <div className="bg-[#151515] w-[350px] md:w-[400px] p-2 rounded-lg">
         <div className="flex pb-2 rounded-lg">
           <input
             value={key}
             onChange={handleKeyChange}
             type="text"
             placeholder="your 32-bit key"
-            className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-xs focus:outline-none"
+            className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg p-4 text-xs focus:outline-none"
           />
         </div>
-
         <div className="bg-[#242424] h-[320px] rounded-lg">
           <textarea
             value={plainText}

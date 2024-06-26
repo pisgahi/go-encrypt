@@ -4,7 +4,7 @@ export default function NewSecret() {
   return (
     <Link
       href={"/add"}
-      className="bg-green-300 md:w-[70px] flex justify-center items-center rounded-lg"
+      className="bg-green-300 w-[35px] md:w-[70px] flex justify-center items-center rounded-lg"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
