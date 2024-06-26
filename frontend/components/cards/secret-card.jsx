@@ -28,7 +28,7 @@ export default function SecretCard() {
           onChange={handleKeyChange}
           type="text"
           placeholder="enter your key..."
-          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-sm focus:outline-none"
+          className="bg-[#242424] text-[#7f7f7f] w-full rounded-lg md:p-4 text-xs focus:outline-none"
         />
         <button
           onClick={handleClick}
@@ -57,7 +57,7 @@ export default function SecretCard() {
           relative overflow-hidden"
         >
           <div className="bg-[#242424] w-full h-[320px] overflow-y-auto rounded-lg">
-            <p className=" text-[#7f7f7f] rounded-lg p-4">
+            <p className="text-[#7f7f7f] rounded-lg p-4">
               {secretData?.decipheredText}
             </p>
           </div>
