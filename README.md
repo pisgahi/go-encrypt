@@ -1,4 +1,4 @@
-#Go Encrypt
+# Go Encrypt
 
 A plaintext encryption application with a Golang backend and a NextJS frontend.
 
