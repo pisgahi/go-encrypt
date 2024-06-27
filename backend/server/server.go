@@ -1,10 +1,13 @@
 package server
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/joho/godotenv"
 )
 
 type Server struct {
@@ -12,10 +15,20 @@ type Server struct {
 }
 
 func StartServer() {
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	PORT := os.Getenv("PORT")
+	if PORT == "" {
+		fmt.Println("PORT string is empty")
+	}
+
 	s := CreateServer()
 	s.MountHandlers()
 
-	http.ListenAndServe(":8080", s.Router)
+	http.ListenAndServe(":"+PORT, s.Router)
 }
 
 func CreateServer() *Server {
