@@ -11,7 +11,7 @@ import (
 )
 
 func serverGreeting(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello go-encrpt"))
+	w.Write([]byte("Hello Go Encrpt"))
 }
 
 func sendSecretHandler(w http.ResponseWriter, r *http.Request) {
