@@ -7,7 +7,7 @@ export default function GithubButton() {
       ease-in-out flex items-center p-2 rounded-lg mt-4 group"
     >
       <Link
-        href={"https://github.com/pisgahi"}
+        href={"https://github.com/pisgahi/go-encrypt"}
         className="w-full p-1 flex justify-center items-center rounded-lg space-x-2"
       >
         <svg
