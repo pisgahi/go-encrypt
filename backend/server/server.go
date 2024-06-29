@@ -1,7 +1,7 @@
 package server
 
 import (
-	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -17,12 +17,12 @@ type Server struct {
 func StartServer() {
 	err := godotenv.Load()
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
-		fmt.Println("PORT string is empty")
+		log.Println("PORT string is empty")
 	}
 
 	s := CreateServer()

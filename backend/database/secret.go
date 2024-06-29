@@ -3,7 +3,6 @@ package database
 import (
 	"context"
 	"encoding/base64"
-	"fmt"
 	"log"
 	"time"
 
@@ -29,7 +28,7 @@ func AddSecret(cipherText []byte, key string) error {
 
 	_, err := collection.InsertOne(ctx, newSecret)
 	if err != nil {
-		fmt.Println("Error add comment to DB", err)
+		log.Println("Error add comment to DB", err)
 	}
 
 	return nil
